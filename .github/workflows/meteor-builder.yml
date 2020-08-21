@@ -1,0 +1,25 @@
+name: meteor-builder-CI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - id: read-docker-image-identifiers
+      name: Read Docker Image Identifiers
+      run: echo ::set-env name=IMAGE_REPOSITORY::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ env.IMAGE_REPOSITORY }}/meteor-builder
+        registry: docker.pkg.github.com
+        path: .
+        dockerfile: ./meteor-builder
+        tag_with_ref: true
+        tag_with_sha: true
