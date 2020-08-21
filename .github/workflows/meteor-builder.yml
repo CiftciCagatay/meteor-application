@@ -34,6 +34,6 @@ jobs:
         repository: ${{ env.IMAGE_REPOSITORY }}/meteor-builder
         registry: docker.pkg.github.com
         path: .
-        dockerfile: ./meteor-builder
+        dockerfile: ./meteor-builder/Dockerfile
         tag_with_ref: true
         tag_with_sha: true
