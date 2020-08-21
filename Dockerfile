@@ -1,4 +1,4 @@
-FROM bluefx/meteor-builder:latest AS builder
+FROM docker.pkg.github.com/ciftcicagatay/meteor-application/meteor-builder:sha-80db717 AS builder
 
 ENV SRC_DIR /usr/src
 ENV BUNDLE_DIR /usr/bundle
