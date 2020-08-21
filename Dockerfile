@@ -8,7 +8,7 @@ COPY . $SRC_DIR
 
 WORKDIR $SRC_DIR
 
-RUN npm install --production
+RUN meteor npm install --production
 RUN meteor build --server-only --directory $BUNDLE_DIR
 RUN cd ${BUNDLE_DIR}/bundle/programs/server && npm install
 
